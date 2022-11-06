@@ -6,15 +6,16 @@ import time
 team_ratings = openpyxl.load_workbook("TeamRatings.xlsx")
 sheet = team_ratings['Sheet1']
 
+
 def start():
     team_id = [
-        ["Atlanta Hawks" , 1],
-        ["Boston Celtics" , 2],
+        ["Atlanta Hawks", 1],
+        ["Boston Celtics", 2],
         ["Brooklyn Nets", 3],
         ["Charlotte Hornets", 4],
-        ["Chicago Bulls", 5], 
+        ["Chicago Bulls", 5],
         ["Cleveland Cavaliers", 6],
-        ["Dallas Mavericks", 7], 
+        ["Dallas Mavericks", 7],
         ["Denver Nuggets", 8],
         ["Detroit Pistons", 9],
         ["Golden State Warriors", 10],
@@ -22,8 +23,8 @@ def start():
         ["Indiana Pacers", 12],
         ["Los Angeles Clippers", 13],
         ["Los Angeles Lakers", 14],
-        ["Memphis Grizzlies", 15], 
-        ["Miami Heat", 16], 
+        ["Memphis Grizzlies", 15],
+        ["Miami Heat", 16],
         ["Milwaukee Bucks", 17],
         ["Minnesota Timberwolves", 18],
         ["New Orleans Pelicans", 19],
@@ -41,9 +42,8 @@ def start():
     ]
     head = ["Team Name", "ID"]
 
-
     print("Here is the list of teams and their id's to get you started: ")
-    print(tabulate(team_id, headers = head, tablefmt = "simple_grid"))
+    print(tabulate(team_id, headers=head, tablefmt="simple_grid"))
 
 
 class Team:
@@ -60,44 +60,58 @@ class Team:
                 self.team_name = i[1].value
                 self.conference = i[2].value
                 self.rating = i[15].value
+
+    def printAttributes(self):
         print(f"Team Name: {self.team_name}")
         print(f"Team Conference: {self.conference}")
         print(f"Team Rating: {self.rating}")
 
-class Series:
-    def __init__(self):
-        self.winner = None
-        self.games = None
+    def __str__(self):
+        return str(self.team_name)
 
-    def play(team1, team2):
-        team1_wins = 0
-        team2_wins = 0
-        team1_low = team1.rating - 5
-        team1_high = team1.rating + 5
-        team2_low = team2.rating - 5
-        team2_high = team2.rating + 5
-        game_number = 0
-        while team1_wins < 4 or team2_wins < 4:
-            team1_score = random.uniform(team1_low, team1_high)
-            team2_score = random.uniform(team2_low, team2_high)
-            game_number += 1
-            if team1_score > team2_score:
-                team1_wins += 1
-                print(f"Game {game_number} winner: {team1}")
-                
-            else:
-                team2_wins += 1
-                print(f"Game {game_number} winner: {team2}")
-            time.sleep(1)
 
-        if team1_wins == 4:
-            return f"Series winner: {team1}"
+# class Series():
+#     def __init__(self):
+#         self.winner = None
+#         self.loser = None
+#         self.games = 0
+
+
+def simulate_series(team1, team2):
+    team1.getAttributes()
+    team2.getAttributes()
+    team1_wins = 0
+    team2_wins = 0
+    team1_low = team1.rating - 5
+    team1_high = team1.rating + 5
+    team2_low = team2.rating - 5
+    team2_high = team2.rating + 5
+    game_number = 0
+    while team1_wins < 4 and team2_wins < 4:
+        team1_score = random.uniform(team1_low, team1_high)
+        team2_score = random.uniform(team2_low, team2_high)
+        game_number += 1
+        if team1_score > team2_score:
+            team1_wins += 1
+            print(f"Game {game_number} winner: {team1}")
 
         else:
-            return f"Series winner: {team2}"
+            team2_wins += 1
+            print(f"Game {game_number} winner: {team2}")
 
-start = start()
+    if team1_wins == 4:
+        winner = team1
+        loser = team2
+    else:
+        winner = team2
+        loser = team1
+
+    print(f"{winner} wins the series against {loser} in {game_number} games!")
 
 
-
+hawks = Team(1)
+hawks.getAttributes()
+celtics = Team(2)
+celtics.getAttributes()
+simulate_series(hawks, celtics)
 
