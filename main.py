@@ -108,14 +108,15 @@ class Series():
             self.winner = team2
             self.loser = team1
 
-        print(f"{self.winner} wins the series against {self.loser} in the {self.games} games!")
+        print(f"{self.winner} win the series against the {self.loser} in {self.games} games!")
 
 
-hawks = Team(1)
-hawks.getAttributes()
-celtics = Team(2)
-celtics.getAttributes()
 
-round_one = Series()
-round_one.simulate(hawks, celtics)
+
+lakers = Team(14)
+clippers = Team(13)
+
+finals = Series()
+finals.simulate(lakers,clippers)
+
 
