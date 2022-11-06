@@ -70,50 +70,52 @@ class Team:
         return str(self.team_name)
 
 
-# class Series():
-#     def __init__(self):
-#         self.winner = None
-#         self.loser = None
-#         self.games = 0
+class Series():
+    def __init__(self):
+        self.winner = None
+        self.loser = None
+        self.games = 0
+
+    def simulate(self, team1, team2):
+
+        team1.getAttributes()
+        team2.getAttributes()
+        team1_wins = 0
+        team2_wins = 0
+        team1_low = team1.rating - 5
+        team1_high = team1.rating + 5
+        team2_low = team2.rating - 5
+        team2_high = team2.rating + 5
+
+        while team1_wins < 4 and team2_wins < 4:
+            team1_score = random.uniform(team1_low, team1_high)
+            team2_score = random.uniform(team2_low, team2_high)
+            self.games += 1
+            if team1_score > team2_score:
+                team1_wins += 1
+                print(f"Game {self.games} winner: {team1}")
+                
+            else:
+                team2_wins += 1
+                print(f"Game {self.games} winner: {team2}")
+            time.sleep(0.5)
 
 
-def simulate_series(team1, team2):
-    team1.getAttributes()
-    team2.getAttributes()
-    team1_wins = 0
-    team2_wins = 0
-    team1_low = team1.rating - 5
-    team1_high = team1.rating + 5
-    team2_low = team2.rating - 5
-    team2_high = team2.rating + 5
-    game_number = 0
-    while team1_wins < 4 and team2_wins < 4:
-        team1_score = random.uniform(team1_low, team1_high)
-        team2_score = random.uniform(team2_low, team2_high)
-        game_number += 1
-        if team1_score > team2_score:
-            team1_wins += 1
-            print(f"Game {game_number} winner: {team1}")
-            
+        if team1_wins == 4:
+            self.winner = team1
+            self.loser = team2
         else:
-            team2_wins += 1
-            print(f"Game {game_number} winner: {team2}")
-        time.sleep(0.5)
+            self.winner = team2
+            self.loser = team1
 
-
-    if team1_wins == 4:
-        winner = team1
-        loser = team2
-    else:
-        winner = team2
-        loser = team1
-
-    print(f"{winner} wins the series against {loser} in {game_number} games!")
+        print(f"{self.winner} wins the series against {self.loser} in the {self.games} games!")
 
 
 hawks = Team(1)
 hawks.getAttributes()
 celtics = Team(2)
 celtics.getAttributes()
-simulate_series(hawks, celtics)
+
+round_one = Series()
+round_one.simulate(hawks, celtics)
 
