@@ -94,10 +94,12 @@ def simulate_series(team1, team2):
         if team1_score > team2_score:
             team1_wins += 1
             print(f"Game {game_number} winner: {team1}")
-
+            
         else:
             team2_wins += 1
             print(f"Game {game_number} winner: {team2}")
+        time.sleep(0.5)
+
 
     if team1_wins == 4:
         winner = team1
