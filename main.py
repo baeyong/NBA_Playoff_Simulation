@@ -76,14 +76,14 @@ class Series():
         self.loser = None
         self.games = 0
 
-    def simulate(self, team1=None, team2=None):
-        if team1 is None:
+    def simulate(self, team1_id=None, team2_id=None):
+        if team1_id is None:
             team1_id = int(input("Enter in the id for the first team: "))
-            team1 = Team(team1_id)
+        team1 = Team(team1_id)
         team1.getAttributes()
-        if team2 is None:
+        if team2_id is None:
             team2_id = int(input("Enter in the id for the second team:"))
-            team2 = Team(team2_id)
+        team2 = Team(team2_id)
         team2.getAttributes()
 
         team1_wins = 0
@@ -119,6 +119,3 @@ class Series():
     def getInfo(self):
         print(
             f"{self.winner} won the series against the {self.loser} in {self.games} games!")
-
-
-
