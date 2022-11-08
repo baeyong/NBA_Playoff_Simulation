@@ -76,10 +76,16 @@ class Series():
         self.loser = None
         self.games = 0
 
-    def simulate(self, team1, team2):
-
+    def simulate(self, team1=None, team2=None):
+        if team1 is None:
+            team1_id = int(input("Enter in the id for the first team: "))
+            team1 = Team(team1_id)
         team1.getAttributes()
+        if team2 is None:
+            team2_id = int(input("Enter in the id for the second team:"))
+            team2 = Team(team2_id)
         team2.getAttributes()
+
         team1_wins = 0
         team2_wins = 0
         team1_low = team1.rating - 5
@@ -94,12 +100,11 @@ class Series():
             if team1_score > team2_score:
                 team1_wins += 1
                 print(f"Game {self.games} winner: {team1}")
-                
+
             else:
                 team2_wins += 1
                 print(f"Game {self.games} winner: {team2}")
             time.sleep(0.5)
-
 
         if team1_wins == 4:
             self.winner = team1
@@ -108,15 +113,12 @@ class Series():
             self.winner = team2
             self.loser = team1
 
-        print(f"{self.winner} win the series against the {self.loser} in {self.games} games!")
+        print(
+            f"{self.winner} win the series against the {self.loser} in {self.games} games!")
 
+    def getInfo(self):
+        print(
+            f"{self.winner} won the series against the {self.loser} in {self.games} games!")
 
-
-
-lakers = Team(14)
-clippers = Team(13)
-
-finals = Series()
-finals.simulate(lakers,clippers)
 
 
