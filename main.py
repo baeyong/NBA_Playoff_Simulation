@@ -44,6 +44,14 @@ def start():
 
     print("Here is the list of teams and their id's to get you started: ")
     print(tabulate(team_id, headers=head, tablefmt="simple_grid"))
+    print()
+    user_choice = int(input(
+        "Would like you to simulate the whole playoffs or one series? Enter 1 for playoffs, 2 for one series: "))
+    if user_choice == 2:
+        series = Series()
+        series.simulate()
+    elif user_choice == 1:
+        pass
 
 
 class Team:
@@ -76,13 +84,13 @@ class Series():
         self.loser = None
         self.games = 0
 
-    def simulate(self, team1_id=None, team2_id=None):
-        if team1_id is None:
-            team1_id = int(input("Enter in the id for the first team: "))
+    def simulate(self):
+
+        team1_id = int(input("Enter in the id for the first team: "))
         team1 = Team(team1_id)
         team1.getAttributes()
-        if team2_id is None:
-            team2_id = int(input("Enter in the id for the second team:"))
+
+        team2_id = int(input("Enter in the id for the second team: "))
         team2 = Team(team2_id)
         team2.getAttributes()
 
@@ -116,6 +124,5 @@ class Series():
         print(
             f"{self.winner} win the series against the {self.loser} in {self.games} games!")
 
-    def getInfo(self):
-        print(
-            f"{self.winner} won the series against the {self.loser} in {self.games} games!")
+
+start = start()
