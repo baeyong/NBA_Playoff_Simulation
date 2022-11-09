@@ -142,7 +142,7 @@ class Series():
         # needs fixing
         if self.conference is None:
             print(
-                f"{self.winner} wins the series against the {self.loser} in {self.games} games!")
+                f"{self.winner} win the series against the {self.loser} in {self.games} games!")
         elif self.conference == "Finals":
             print(
                 f"{self.winner} win the NBA FINALS against the {self.loser} in {self.games} games!")
