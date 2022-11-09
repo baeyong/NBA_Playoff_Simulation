@@ -48,6 +48,11 @@ def start():
     print()
     user_choice = int(input(
         "Would like you to simulate the whole playoffs or one series? Enter 1 for playoffs, 2 for one series: "))
+    while user_choice != 1 and user_choice != 2:
+        print("Invalid input. Try again? ")
+        user_choice = int(input(
+            "Would like you to simulate the whole playoffs or one series? Enter 1 for playoffs, 2 for one series: "))
+
     if user_choice == 2:
         series = Series()
         series.simulateSeries()
@@ -231,6 +236,7 @@ class Playoffs:
     def show(self):
         print(self.teams_east)
         print(self.teams_west)
+
 
 if __name__ == "__main__":
     start = start()
