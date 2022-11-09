@@ -1,3 +1,4 @@
+# Taeyong Lee
 import openpyxl
 from tabulate import tabulate
 import random
@@ -231,5 +232,5 @@ class Playoffs:
         print(self.teams_east)
         print(self.teams_west)
 
-
-start = start()
+if __name__ == "__main__":
+    start = start()
