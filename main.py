@@ -56,11 +56,13 @@ def start():
     if user_choice == 2:
         series = Series()
         series.simulateSeries()
+        print()
         again = int(input(
             "Would you like to simulate another series? Type 1 if so, anything else to stop: "))
         while again == 1:
             series = Series()
             series.simulateSeries()
+            print()
             again = int(input(
                 "Would you like to simulate another series? Type 1 if so, anything else to stop: "))
 
