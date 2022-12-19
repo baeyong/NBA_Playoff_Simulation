@@ -1,4 +1,3 @@
-# Taeyong Lee
 import openpyxl
 from tabulate import tabulate
 import random
@@ -110,10 +109,20 @@ class Series():
     def simulateSeries(self, team1_id=None, team2_id=None):
         if team1_id is None:
             team1_id = int(input("Enter in the id for the first team: "))
-        team1 = Team(team1_id)
-        team1.getAttributes()
+
+        while team1_id < 1 or team1_id > 30:
+            print("Try again. Invalid id.")
+            team1_id = int(input("Enter in the id for the first team: "))
+
         if team2_id is None:
             team2_id = int(input("Enter in the id for the second team: "))
+
+        while team2_id < 1 or team2_id > 30:
+            print('Try again. Invalid id.')
+            team2_id = int(input("Enter in the id for the second team: "))
+
+        team1 = Team(team1_id)
+        team1.getAttributes()
         team2 = Team(team2_id)
         team2.getAttributes()
 
